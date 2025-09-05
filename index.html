@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UPCYDE Project Handover</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #f8fafc;
+            color: #1f2937;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 20px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 20px rgba(34, 197, 94, 0.3);
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .brands {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .brand-tag {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .section {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid #22c55e;
+        }
+        
+        .section h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: #1f2937;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .info-item {
+            background: #f8fafc;
+            padding: 1rem;
+            border-radius: 10px;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .info-label {
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 0.5rem;
+        }
+        
+        .info-value {
+            color: #6b7280;
+        }
+        
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+        
+        .status-active {
+            background: #dcfce7;
+            color: #166534;
+        }
+        
+        .status-pending {
+            background: #fef3c7;
+            color: #92400e;
+        }
+        
+        .status-stopped {
+            background: #fecaca;
+            color: #991b1b;
+        }
+        
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+        }
+        
+        .link-card {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .link-card:hover {
+            border-color: #22c55e;
+            box-shadow: 0 4px 12px rgba(34, 197, 94, 0.15);
+            transform: translateY(-2px);
+        }
+        
+        .link-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .link-desc {
+            font-size: 0.9rem;
+            color: #6b7280;
+        }
+        
+        .ai-agent {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .ai-agent h3 {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .ai-details {
+            display: grid;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .ai-detail {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            border-radius: 8px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        th {
+            background: #f8fafc;
+            font-weight: 600;
+            color: #374151;
+        }
+        
+        tr:hover {
+            background: #f8fafc;
+        }
+        
+        .priority-high { color: #dc2626; font-weight: 600; }
+        .priority-medium { color: #f59e0b; font-weight: 600; }
+        .priority-low { color: #16a34a; font-weight: 600; }
+        
+        .lessons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+        
+        .lesson-item {
+            padding: 1rem;
+            border-radius: 10px;
+        }
+        
+        .lesson-good { background: #dcfce7; border-left: 4px solid #16a34a; }
+        .lesson-bad { background: #fecaca; border-left: 4px solid #dc2626; }
+        .lesson-warning { background: #fef3c7; border-left: 4px solid #f59e0b; }
+        .lesson-tip { background: #dbeafe; border-left: 4px solid #2563eb; }
+        
+        .faq-item {
+            background: #f8fafc;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .faq-question {
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 0.5rem;
+        }
+        
+        .faq-answer {
+            color: #6b7280;
+        }
+        
+        .final-note {
+            background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            font-style: italic;
+        }
+        
+        .back-button {
+            position: fixed;
+            top: 2rem;
+            left: 2rem;
+            background: #22c55e;
+            color: white;
+            padding: 1rem;
+            border-radius: 50%;
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .back-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 16px rgba(34, 197, 94, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <a href="#" class="back-button" onclick="goBack()" title="กลับไปหน้าหลัก">
+        ← 
+    </a>
+
+    <div class="container">
+        <div class="header">
+            <h1>🌱 UPCYDE Project Handover</h1>
+            <p>การส่งมอบโปรเจควัสดุยั่งยืนจากเศษผลไม้</p>
+            <div class="brands">
+                <div class="brand-tag">VerdeSKIN</div>
+                <div class="brand-tag">VerdeFORM</div>
+                <div class="brand-tag">VerdeX</div>
+                <div class="brand-tag">VerdeSCOUT</div>
+            </div>
+        </div>
+        
+        <!-- Section 1: Project Overview -->
+        <div class="section">
+            <h2>📌 Section 1: Project Overview</h2>
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="info-label">Project Name:</div>
+                    <div class="info-value">UPCYDE - Sustainable Materials from Agricultural Waste</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Owner (ก่อนหน้า):</div>
+                    <div class="info-value">Bo [Your Name]</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">New Point of Contact:</div>
+                    <div class="info-value">[ต้องระบุ - To be assigned]</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Status:</div>
+                    <div class="info-value">
+                        <span class="status-badge status-active">🟢 เดินหน้าอยู่</span>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Key Objective / Vision:</div>
+                    <div class="info-value">เปลี่ยนเศษวัสดุเกษตรให้กลายเป็นผลิตภัณฑ์ทดแทนหนังสัตว์ที่ยั่งยืน</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Current Stage:</div>
+                    <div class="info-value">MVP → In Pilot (ขึ้นอยู่กับแต่ละแบรนด์)</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 2: Key Resources & Links -->
+        <div class="section">
+            <h2>📁 Section 2: Key Resources & Links</h2>
+            <div class="links-grid">
+                <a href="#" class="link-card" onclick="openResource('notion')">
+                    <div class="link-title">📓 Notion Master Page</div>
+                    <div class="link-desc">หน้าหลักรวมข้อมูลโปรเจค UPCYDE ทั้งหมด</div>
+                </a>
+                <a href="#" class="link-card" onclick="openResource('drive')">
+                    <div class="link-title">📁 Google Drive Folder</div>
+                    <div class="link-desc">ไฟล์เอกสาร Research, Testing, และ Production</div>
+                </a>
+                <a href="#" class="link-card" onclick="openResource('canva')">
+                    <div class="link-title">🎨 Design Files / Assets</div>
+                    <div class="link-desc">Canva assets, Brand guideline, Product images</div>
+                </a>
+                <a href="#" class="link-card" onclick="openResource('sheets')">
+                    <div class="link-title">📊 Key Spreadsheets</div>
+                    <div class="link-desc">Production tracking, Cost analysis, Material database</div>
+                </a>
+                <a href="#" class="link-card" onclick="openResource('docs')">
+                    <div class="link-title">📋 Important Docs</div>
+                    <div class="link-desc">Business Plan, Pitch Deck, Product Specs</div>
+                </a>
+                <a href="#" class="link-card" onclick="openResource('claude')">
+                    <div class="link-title">🤖 Claude/Custom GPT</div>
+                    <div class="link-desc">AI Assistant สำหรับ UPCYDE</div>
+                </a>
+            </div>
+        </div>
+
+        <!-- Section 3: AI/Agent Involved -->
+        <div class="section">
+            <h2>🤖 Section 3: AI/Agent Involved</h2>
+            <div class="ai-agent">
+                <h3>🌱 UPCYDE Strategic Assistant</h3>
+                <div class="ai-details">
+                    <div class="ai-detail">
+                        <strong>System Prompt:</strong><br>
+                        "คุณคือเลขาคู่คิดของทีม UPCYDE — บริษัทวัสดุยั่งยืนที่เปลี่ยนเศษวัสดุเกษตร เช่น เปลือกผลไม้ ให้กลายเป็นผลิตภัณฑ์ทดแทนหนังสัตว์..."
+                    </div>
+                    <div class="ai-detail">
+                        <strong>Context/Knowledge ที่ใช้สอน:</strong><br>
+                        • ไฟล์ประชุมและบทสนทนา<br>
+                        • ข้อมูล R&D และการทดสอบ<br>
+                        • Market research และ competitor analysis<br>
+                        • Production process และ cost structure
+                    </div>
+                    <div class="ai-detail">
+                        <strong>ตัวอย่าง Use Cases:</strong><br>
+                        • วิเคราะห์สถานะโปรเจค<br>
+                        • จัดลำดับความสำคัญงาน<br>
+                        • สรุปการประชุมและ action items<br>
+                        • รวบรวม insights สำหรับการตลาด
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 4: Pending Actions -->
+        <div class="section">
+            <h2>📝 Section 4: Pending Actions / Things To Do</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Task</th>
+                        <th>ผู้รับผิดชอบ</th>
+                        <th>Deadline</th>
+                        <th>Priority</th>
+                        <th>หมายเหตุ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>VerdeSKIN Material Testing Phase 2</td>
+                        <td>R&D Team</td>
+                        <td>Sep 2025</td>
+                        <td class="priority-high">High</td>
+                        <td>ทดสอบความทนทานและ texture</td>
+                    </tr>
+                    <tr>
+                        <td>VerdeFORM Product Line Launch</td>
+                        <td>Marketing Team</td>
+                        <td>Oct 2025</td>
+                        <td class="priority-high">High</td>
+                        <td>รองเท้าและอุปกรณ์แฟชั่น</td>
+                    </tr>
+                    <tr>
+                        <td>VerdeX Partnership Development</td>
+                        <td>Business Dev</td>
+                        <td>Nov 2025</td>
+                        <td class="priority-medium">Medium</td>
+                        <td>หาพาร์ทเนอร์สำหรับ waste collection</td>
+                    </tr>
+                    <tr>
+                        <td>VerdeSCOUT Platform Beta</td>
+                        <td>Tech Team</td>
+                        <td>Dec 2025</td>
+                        <td class="priority-medium">Medium</td>
+                        <td>Database และ API development</td>
+                    </tr>
+                    <tr>
+                        <td>Cost Optimization Study</td>
+                        <td>Operations</td>
+                        <td>Jan 2026</td>
+                        <td class="priority-low">Low</td>
+                        <td>เพิ่มประสิทธิภาพการผลิต</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Section 5: Lessons Learned -->
+        <div class="section">
+            <h2>🧠 Section 5: Lessons Learned / ข้อควรระวัง</h2>
+            <div class="lessons">
+                <div class="lesson-item lesson-bad">
+                    <strong>ปัญหาที่เจอ:</strong><br>
+                    • การควบคุมคุณภาพในการผลิตครั้งแรก<br>
+                    • Supply chain ของวัตถุดิบไม่คงที่<br>
+                    • ราคาแข่งขันไม่ได้กับ synthetic leather
+                </div>
+                <div class="lesson-item lesson-good">
+                    <strong>สิ่งที่ทำแล้วเวิร์ก:</strong><br>
+                    • Partnership กับเกษตรกรท้องถิ่น<br>
+                    • Focus กลุ่ม eco-conscious consumers<br>
+                    • Storytelling ที่เชื่อมต่อกับ sustainability
+                </div>
+                <div class="lesson-item lesson-warning">
+                    <strong>สิ่งที่ไม่ควรทำซ้ำ:</strong><br>
+                    • เร่งเข้า mass production เร็วเกินไป<br>
+                    • ไม่ได้ทำ proper market validation<br>
+                    • ขาด quality control system ที่ชัดเจน
+                </div>
+                <div class="lesson-item lesson-tip">
+                    <strong>ข้อเสนอแนะให้ทีมใหม่:</strong><br>
+                    • เน้น R&D และ product development ก่อน<br>
+                    • สร้าง pilot customers ก่อนขยายตลาด<br>
+                    • ใช้ data-driven approach ในการตัดสินใจ
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 6: FAQ -->
+        <div class="section">
+            <h2>💬 Section 6: FAQ / คำถามพบบ่อย</h2>
+            <div class="faq-item">
+                <div class="faq-question">Q: VerdeSKIN กับ traditional leather ต่างกันอย่างไร?</div>
+                <div class="faq-answer">A: VerdeSKIN ทำจากเปลือกผลไม้ 100% ไม่ใช้สารเคมีที่เป็นพิษ และมี carbon footprint ต่ำกว่า 80%</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Q: ต้นทุนการผลิตสูงกว่าหนังสัตว์มากไหม?</div>
+                <div class="faq-answer">A: ปัจจุบันสูงกว่าประมาณ 40% แต่เมื่อขยายการผลิต (scale) จะลดลงได้</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Q: Target market หลักคือใคร?</div>
+                <div class="faq-answer">A: B2B: Fashion brands ที่ต้องการ sustainable materials / B2C: Eco-conscious consumers อายุ 25-40</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Q: แผนการขยายตลาดต่างประเทศเป็นอย่างไร?</div>
+                <div class="faq-answer">A: เริ่มจาก SEA region ก่อน แล้วขยายไป EU และ North America ในปี 2026-2027</div>
+            </div>
+        </div>
+
+        <!-- Section 7: Final Notes -->
+        <div class="section">
+            <div class="final-note">
+                <h2>📣 Final Notes from Bo</h2>
+                <p>"UPCYDE เป็นโปรเจคที่ผมมั่นใจมากว่ามี potential สูงมาก เพราะตรงกับเทรนด์ sustainability ที่กำลังมาแรง และเรามี unique technology ที่ยากต่อการเลียนแบบ ขอให้ทีมใหม่ช่วยกันพัฒนาต่อ โดยเฉพาะใน R&D และการสร้าง strategic partnerships ที่จะช่วยให้เราสามารถขยายตลาดได้อย่างยั่งยืน"</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function goBack() {
+            alert('🔙 กลับไปหน้า Bo\'s Project Handover Hub');
+            // In production: window.history.back() or navigate to hub
+        }
+
+        function openResource(type) {
+            const resources = {
+                'notion': 'Notion Master Page สำหรับ UPCYDE',
+                'drive': 'Google Drive Folder ที่มีไฟล์ทั้งหมด',
+                'canva': 'Canva Design Assets และ Brand Materials',
+                'sheets': 'Google Sheets สำหรับ tracking และ analysis', 
+                'docs': 'เอกสารสำคัญ Business Plan และ Pitch Deck',
+                'claude': 'Claude AI Assistant สำหรับ UPCYDE'
+            };
+            
+            alert(`🔗 เปิด ${resources[type]}\n\nในการใช้งานจริงจะลิงค์ไปยัง:\n• Notion pages\n• Google Drive folders\n• Canva designs\n• Spreadsheets\n• Documents\n• AI assistants`);
+            
+            // In production, open actual links:
+            // window.open(actualUrl, '_blank');
+        }
+
+        // Add smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
